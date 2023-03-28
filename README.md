@@ -46,7 +46,7 @@
 ### Final Prototyping with GUI
 <p> The following file consists of GUI documentation of this application.</p>
 <ul>
-<li><a href="">Prototyping the GUI</a><li>
+<li><a href="https://github.com/Sabari-rv/Stock_Investors_Diary/blob/main/Prototype.pdf">Prototyping the GUI</a></li>
 </ul>
 
 ### Explanation Link
