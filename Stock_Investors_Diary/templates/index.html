@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block watchlist %}
+<style>
+    #watchlist_stocks{
+        color: white;
+        overflow-y: scroll;
+        height:640px;
+        border: 1px;
+        border-radius: 5px;
+        background: none;
+        background-color: none;
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    #watchlist_stocks::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    #watchlist_stocks {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    .interval{
+        width: 100%;
+        background: none;
+        border-radius: 25px;
+        border-color: white;
+        color: white;
+    }
+
+    .interval:hover{
+        background: lightblue;
+        color: black;
+    }
+
+    .zoom1 {
+        transition: transform .2s;
+    }
+
+    .zoom1:hover
+    {
+        -ms-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    .sidestocks:hover{
+        background: lightblue;
+        color: black;
+    }
+
+    .rem_stocks:hover{
+        background: lightcoral;
+    }
+
+</style>
+
+<div>
+    <center>
+        <br>
+        <h3 class="watchlist_head">Your Stocks</h3><br>
+
+        <form name="watchlistform" autocomplete="off" action="/add_watchlist" method="POST">
+            <div class="autocomplete" style="width:300px;">
+                <input id="myInput" type="text" name="StockName" placeholder="Stock Name">
+            </div><br><br>
+            <input type="button" value="Add to Watchlist" id="addwatchlist"><br><br>
+        </form>
+        <div id="watchlist_stocks">
+            {% for stockname,stksymbol in zip(userstock,stk_symbols) %}
+                <div class="stock">
+                    <table>
+                    <tr>
+                        <td style="width:100%;background: #CCC;">
+                            <a href=/display_stock?symbol={{stksymbol}}>
+                            <button style="width:100%" class="sidestocks">
+                                <b>{{stksymbol}}</b>
+                                <br>{{stockname}}                      
+                            </button>  
+                            </a>
+                        </td>
+                        <td style="width: 100%;background: #CCC;">
+                            <a href="/remove_watchlist?symbol={{stksymbol}}">
+                                <button style="width:100%" class="rem_stocks">-</button>
+                            </a>
+                        </td>
+                    </tr>
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+    </center>
+    <br><br><br><br><br>
+</div>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<center>
+    <h3><font color="white">{{ stock }}<br><br></font></h3>
+    {% block details %}
+    <center>
+    <table style="background: none;width: 600px;" class="zoom1">
+        <tr>
+            <td style="color: white;text-align: left;font-size: 20px;padding-left: 10px;">
+            <b><u>Symbol</u></b> : {{details['symbol']}}</td>
+            <td style="color: white;text-align: left;font-size: 20px;padding-left: 10px;">
+            <b><u>Country</u></b> : {{details['country']}}</td>
+        </tr>
+        <tr>
+            <td style="color: white;text-align: left;font-size: 20px;padding-left: 10px;">
+            <b><u>Name</u></b> : {{details['name']}}</td>
+            <td style="color: white;text-align: left;font-size: 20px;padding-left: 10px;">
+            <b><u>Type</u></b> : {{details['type']}}</td>
+        </tr>
+        <tr>     
+            <td style="color: white;text-align: left;font-size: 20px;padding-left: 10px;">
+            <b><u>Currency</u></b> : {{details['currency']}}</td>
+            <td style="color: white;text-align: left;font-size: 20px;padding-left: 10px;">
+            <b><u>Exchange</u></b> : {{details['exchange']}}</td>
+        </tr>
+    </table>
+    </center>
+    {% endblock %}
+    <br><br>
+
+    <a href="/interval_graph?symbol={{symbol}}&interval=5min" style="width: 70px;display: inline-block;">
+        <button id="5m" class="interval zoom1">5min</button>
+    </a>
+
+    <a href="/interval_graph?symbol={{symbol}}&interval=15min" style="width: 70px;display: inline-block;">
+        <button id="15m" class="interval zoom1">15min</button>
+    </a>
+
+    <a href="/interval_graph?symbol={{symbol}}&interval=30min" style="width: 70px;display: inline-block;">
+        <button id="30m" class="interval zoom1">30min</button>
+    </a>
+
+    <a href="/interval_graph?symbol={{symbol}}&interval=1h" style="width: 70px;display: inline-block;">
+        <button id="1h" class="interval zoom1"> 1hour</button>
+    </a>
+
+    <a href="/interval_graph?symbol={{symbol}}&interval=4h" style="width: 70px;display: inline-block;">
+        <button id="4h" class="interval zoom1">4hour</button>
+    </a>
+
+    <a href="/interval_graph?symbol={{symbol}}&interval=1day" style="width: 70px;display: inline-block;">
+        <button id="1d" class="interval zoom1">1day</button>
+    </a>
+
+    <a href="/interval_graph?symbol={{symbol}}&interval=1week" style="width: 70px;display: inline-block;">
+        <button id="1w" class="interval zoom1">1week</button>
+    </a>
+
+    <a href="/interval_graph?symbol={{symbol}}&interval=1month" style="width: 70px;display: inline-block;">
+        <button id="1m" class="interval zoom1">1month</button>
+    </a>
+
+    <br><br>
+    <div id="graph">     
+        <div id="chart5m" class="chart"></div><br><br>
+    </div>
+    </center>
+    
+    <script>
+        Plotly.plot("chart5m",{{graph | safe}},{});
+        autocomplete(document.getElementById("myInput"), stock_names);
+        var addbtn = document.getElementById("addwatchlist");
+        addbtn.addEventListener("click",()=>{
+            var addedstock = document.getElementById("myInput").value;
+            if(stock_names.includes(addedstock)){
+                document.watchlistform.submit();
+            }else{
+                swal({
+                  title: "Stock not Available",
+                  text: "Please choose stocks from availble list",
+                  icon: "error",
+                });
+            }
+        });
+    </script>
+{% endblock %}

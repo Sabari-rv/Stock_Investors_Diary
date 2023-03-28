@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block about %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+        .centered
+        {
+          position: absolute;
+          top: 40%;
+          left: 53%;
+          transform: translate(-50%, -50%);
+          font-family: "Trebuchet MS", Helvetica, sans-serif;
+          color: white;
+          border-style: outset;
+          padding: 10px;
+
+        }
+        .centerabout
+        {
+          color: white;
+          text-align: center;
+        }
+        .para
+        {
+            font-size: 25px;
+            text-align:center;
+            color: black;
+            border: 3px solid #aaa;
+            width:85%;
+            padding: 3px;
+            background: rgb(195, 190, 190);
+
+        }
+        .zoom1
+        {
+
+        }
+        .zoom1:hover
+        {
+           background-color:white;
+           box-shadow: 10px 10px 20px rgba(0,0,0,0.7);
+       }
+
+
+       .card
+       {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          width: 230px;
+          height:410px;
+          display: inline-block;
+        }
+
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .container {
+          padding: 2px 25px;
+        }
+        .who{
+
+            font-family: 'Oswald', sans-serif;
+            font-size: 70px;
+            color: white;
+        }
+        .zoom1 {
+            transition: transform .2s;
+        }
+
+        .zoom1:hover
+        {
+          -ms-transform: scale(1.1);
+          -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+        }
+
+    </style>
+    <img src="static/front.jpeg" style=" width: 100%; filter: contrast(70%);" height="557">
+    <div class="centered">
+        <h1>If you don't follow stock market, then you are missing some amazing drama... </h1>
+    </div><br><br>
+    <center>
+    <br>
+    <div class="who">
+        <h1 style="font-size:40px">Who we are</h1>
+    </div>
+    </center>
+    <br><br>
+    <center>
+    <div class="para zoom1">
+        <p>Nice to meet you!! We provide a web Application that analyses the stock on which you have invested or has
+        interest, with some visualization techniques and favor you by feeding news about stocks that are invested by you.</p>
+        <br>
+        <p>Stock investors diary's tryst with excellence in customer relations began in 1987. Today, Stock investor has emerged as one of the most respected Stock-Broking and Wealth Management Companies in India. With its unique retail-focused stock trading business model, Stock investor is committed to providing a Real Value for Money to all its clients.</p>
+        <br>
+        <p>The Stock investor Group is a member of the Bombay Stock Exchange (BSE), National Stock Exchange (NSE) and the two leading Commodity Exchanges in the country: NCDEX & MCX. Stock investor is also registered as a Depository Participant with CDSL.</p>
+    </div></center>
+
+    <br><br>
+    <div class="centerabout">
+        <h1>Our Team</h1>
+    </div>
+    <br><br><center>
+    <div class="card zoom1">
+        <a href="https://www.linkedin.com/in/sabarinathan-r-v-5804441b0" style="text-decoration: none;color: black;">
+            <img src="static/self.jpeg" alt="Avatar" style="width:100%" width="100" height="350">
+            <div class="container">
+                <h4 style="font-size:17.5px"><b>Sabarinathan R V</b></h4>
+                <p>Front-end Designer</p>
+            </div>
+        </a>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="card zoom1">
+        <a href="https://www.linkedin.com/in/tharun-sathiyamurthy-63a2a81b0" style="text-decoration: none;color: black;">
+            <img src="static/fire1.jpeg" alt="Avatar" style="width:100%" width="120" height="350">
+            <div class="container">
+                <h4 style="font-size:17.5px"><b>Tharun S</b></h4>
+                <p>Representative</p>
+            </div>
+        </a>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+    <div class="card zoom1">
+        <a href="https://www.linkedin.com/in/tharun-sathiyamurthy-63a2a81b0" style="text-decoration: none;color: black;">
+            <img src="static/hari.jpg" alt="Avatar" style="width:100%" width="100" height="350">
+            <div class="container">
+                <h4 style="font-size:17.5px"><b>Hariharan N</b></h4>
+                <p>Domain Expert</p>
+            </div>
+        </a>
+    </div>
+</center>
+
+
+
+<br><br><br><br><br><br>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block watchlist %}
+<style>
+    #watchlist_stocks{
+        color: white;
+        overflow-y: scroll;
+        height:375px;
+        border: 1px;
+        border-radius: 5px;
+        background: none;
+        background-color: none;
+    }
+
+    .interval{
+        width: 100%;
+        background: none;
+        border-radius: 25px;
+        border-color: white;
+        color: white;
+    }
+
+    .interval:hover{
+        background: lightblue;
+        color: black;
+    }
+
+    .zoom {
+        transition: transform .2s;
+    }
+
+    .zoom:hover
+    {
+        -ms-transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+
+</style>
+<div>
+    <center>
+        <br>
+        <h3 class="watchlist_head">Your Stocks</h3><br>
+
+        <form autocomplete="off" action="/add_watchlist" method="POST">
+            <div class="autocomplete" style="width:300px;">
+                <input id="myInput" type="text" name="StockName" placeholder="Stock Name">
+            </div><br><br>
+            <input type="submit" value="Add to Watchlist" id="addwatchlist"><br><br>
+        </form>
+    </center>
+</div>
+{% endblock %}
+
+{% block content %}
+<br><br>
+<center>
+    <h3><font color="white">{{ stock }}<br><br></font></h3>
+</center>
+
+<script type="text/javascript">
+    autocomplete(document.getElementById("myInput"), stock_names);
+    var addbtn = document.getElementById("addwatchlist");
+    addbtn.addEventListener("click",()=>{
+        var addedstock = document.getElementById("myInput").value;
+        if(stock_names.includes(addedstock)){
+            document.watchlistform.submit();
+        }else{
+            swal({
+              title: "Stock not Available",
+              text: "Please choose stocks from availble list",
+              icon: "error",
+            });
+        }
+    });
+</script>
+{% endblock %}

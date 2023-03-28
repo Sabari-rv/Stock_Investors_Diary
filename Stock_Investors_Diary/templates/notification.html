@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block Alert %}
+
+    <br><br>
+    <center><h1 style="color: #d9ecfc;">PREDICT ON YOUR WATCHLIST STOCKS</h1></center>
+    <br><br>
+
+    <center>
+        <form name="notify" id="notificaitonInfo" action="/predict" method="post">
+
+            <div class="alert_info">
+                <select name="Stock_Name" style="width: 400px;color: black;" width="200" required>
+                    {% for stock in watchlist %}                       
+                        <option  style="color:black;">{{stock}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <center><br>
+                <button type="submit" id="set" class="btn btn-primary btn-large"
+                            style="width: 200; height:50; font-size:25">
+                            Predict
+                </button>
+            </center>
+        </form>
+    </center>
+    <center><br>
+    <div class="res" style="color:white;">
+        {{ res }}<br><br>
+        <img src="/plot.png" alt="Click predict to see graph">
+    </div><br><br><br><br>
+        </center>
+
+{% endblock %}
+
