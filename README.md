@@ -11,5 +11,18 @@
 <li>Stock price prediction</li>
 </ul>
 
-<p>This application follows Iterative waterfall model</p>
+
 <p>Application built following all software engineering principles</p>
+
+### Software Process model 
+<p>This application follows Iterative waterfall model</p>
+<p>The following file contains informations that includes 
+<ul>
+<li>Work bench Structure</li>
+<li>Activity network</li>
+<li>Resource Allocation report</li>
+<li>Histogram of work resources</li>
+<li>Gantt chart (with and without slack times) </li>
+<li>Overall statistics of the Project</li>
+</ul>
+</p>
