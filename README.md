@@ -16,7 +16,8 @@
 
 ### Software Process model 
 <p>This application follows Iterative waterfall model</p>
-<p>The following file contains informations that includes 
+<p>The following file contains informations that includes
+<ul> <li><a href="">ProjectLibre file</a></li>
 <ul>
 <li>Work bench Structure</li>
 <li>Activity network</li>
@@ -24,5 +25,11 @@
 <li>Histogram of work resources</li>
 <li>Gantt chart (with and without slack times) </li>
 <li>Overall statistics of the Project</li>
-</ul>
+</ul></ul>
 </p>
+
+### Test reports and configuration management
+<p>This file contains both automated testing and manual testing reports</p>
+<ul>
+<li><a href="">Test Report</a></li>
+</ul>
